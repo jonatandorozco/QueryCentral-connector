@@ -16,9 +16,12 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.group(() => {
+  Route.post('/objects', 'ConnectionController.getObjects')
+  Route.post('/test', 'ConnectionController.test')
+}).prefix('/connection')
 
-Route.post('/connection/test', 'ConnectionController.test')
-
+Route.group(() =>{
+  Route.post('/tables', 'DatabaseController.getTables')
+  Route.post('/views', 'DatabaseController.getViews')
+}).prefix('/database')
