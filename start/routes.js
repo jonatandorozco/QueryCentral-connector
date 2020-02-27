@@ -17,11 +17,15 @@
 const Route = use('Route')
 
 Route.group(() => {
-  Route.post('/objects', 'ConnectionController.getObjects')
+  Route.post('/databases', 'ConnectionController.getDatabases')
+  Route.post('/users', 'ConnectionController.getUsers')
   Route.post('/test', 'ConnectionController.test')
 }).prefix('/connection')
 
 Route.group(() =>{
   Route.post('/tables', 'DatabaseController.getTables')
   Route.post('/views', 'DatabaseController.getViews')
+  Route.post('/functions', 'DatabaseController.getFunctions')
+  Route.post('/procedures', 'DatabaseController.getProcedures')
+  Route.post('/triggers', 'DatabaseController.getTriggers')
 }).prefix('/database')
